@@ -12,6 +12,16 @@
 
         public int BookId { get; set; }
 
+        public string BookName { get; set; }
+
+        public string Author { get; set; }
+
         public int BookQuantity { get; set; }
+
+        public decimal Price { get; set; }
+
+        public decimal DiscountPrice { get; set; }
+
+        public string BookImg { get; set; }
     }
 }
