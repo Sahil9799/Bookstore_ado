@@ -5,14 +5,22 @@ namespace BookStore_ADO_DatabaseFirst
     using System.Linq;
     using System.Text;
     using System.Threading.Tasks;
+    using BusinessLayer.Interfaces.AddressInterfaces;
     using BusinessLayer.Interfaces.AdminInterfaces;
     using BusinessLayer.Interfaces.BookInterfaces;
     using BusinessLayer.Interfaces.CartInterfaces;
+    using BusinessLayer.Interfaces.FeedbackInterfaces;
+    using BusinessLayer.Interfaces.OrderInterfaces;
     using BusinessLayer.Interfaces.UserInterfaces;
+    using BusinessLayer.Interfaces.WishListInterfaces;
+    using BusinessLayer.Services.AddressServices;
     using BusinessLayer.Services.AdminServices;
     using BusinessLayer.Services.BookServices;
     using BusinessLayer.Services.CartServices;
+    using BusinessLayer.Services.FeedbackServices;
+    using BusinessLayer.Services.OrderServices;
     using BusinessLayer.Services.UserServices;
+    using BusinessLayer.Services.WishListServices;
     using Microsoft.AspNetCore.Authentication.JwtBearer;
     using Microsoft.AspNetCore.Builder;
     using Microsoft.AspNetCore.Hosting;
@@ -24,14 +32,22 @@ namespace BookStore_ADO_DatabaseFirst
     using Microsoft.Extensions.Logging;
     using Microsoft.IdentityModel.Tokens;
     using Microsoft.OpenApi.Models;
+    using RepositoryLayer.Interfaces.AddressInterfaces;
     using RepositoryLayer.Interfaces.AdminInterfaces;
     using RepositoryLayer.Interfaces.BookInterfaces;
     using RepositoryLayer.Interfaces.CartInterfaces;
+    using RepositoryLayer.Interfaces.FeedbackInterfaces;
+    using RepositoryLayer.Interfaces.OrderInterfaces;
     using RepositoryLayer.Interfaces.UserInterfaces;
+    using RepositoryLayer.Interfaces.WishListInterfaces;
+    using RepositoryLayer.Services.AddressServices;
     using RepositoryLayer.Services.AdminServices;
     using RepositoryLayer.Services.BookServices;
     using RepositoryLayer.Services.CartServices;
+    using RepositoryLayer.Services.FeedbackRL;
+    using RepositoryLayer.Services.OrderServices;
     using RepositoryLayer.Services.UserServices;
+    using RepositoryLayer.Services.WishListServices;
 
     public class Startup
     {
@@ -107,6 +123,18 @@ namespace BookStore_ADO_DatabaseFirst
 
             services.AddTransient<ICartRL, CartRL>();
             services.AddTransient<ICartBL, CartBL>();
+
+            services.AddTransient<IWishListRL, WishListRL>();
+            services.AddTransient<IWishListBL, WishListBL>();
+
+            services.AddTransient<IAddressRL, AddressRL>();
+            services.AddTransient<IAddressBL, AddressBL>();
+
+            services.AddTransient<IOrderRL, OrderRL>();
+            services.AddTransient<IOrderBL, OrderBL>();
+
+            services.AddTransient<IFeedbackRL, FeedbackRL>();
+            services.AddTransient<IFeedbackBL, FeedbackBL>();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -126,7 +154,7 @@ namespace BookStore_ADO_DatabaseFirst
             // Enable middleware to serve swagger-ui (HTML, JS, CSS, etc.)
             app.UseSwaggerUI(c =>
             {
-                c.SwaggerEndpoint("/swagger/v1/swagger.json", "My BookStore API");
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", " BookStore ");
             });
 
             app.UseEndpoints(endpoints =>
